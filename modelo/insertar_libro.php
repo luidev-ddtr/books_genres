@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn->query("DELETE FROM libro WHERE id_libro = $id_libro");
             echo "<script>alert('Error al insertar los géneros. El libro se ha eliminado.'); window.location.href='../vista/agregar.html';</script>";
         } else {
-            echo "<script>alert('Libro insertado correctamente'); window.location.href='../vista/admin_login.html';</script>";
+            echo "<script>alert('Libro insertado correctamente'); window.location.href='../vista/admin_login.php';</script>";
         }
     } else {
         echo "<script>alert('Error al insertar el libro: " . $stmt->error . "'); window.location.href='../vista/agregar.html';</script>";

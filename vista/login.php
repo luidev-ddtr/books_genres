@@ -1,12 +1,32 @@
+<?php
+
+$USUARIO_CORRECTO = "admin";
+$PASSWORD =  "1234";
+
+// Procesar el formulario si se envió
+$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+    
+    // Validar credenciales
+    if ($username === $USUARIO_CORRECTO && $password === $PASSWORD ) {
+        // Redirigir al panel de administración
+        header("Location: admin_login.php");
+        exit();
+    } else {
+        $error = "Usuario o contraseña incorrectos";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Administrador</title>
-
+    <link rel="stylesheet" href="style.css/login.css">
 </head>
-<link rel="stylesheet" href="style.css/login.css">
 <body>
 
     <!-- IMAGEN DE FONDO -->
@@ -23,19 +43,24 @@
 
         <h2>Acceso Admin</h2>
 
-        <div id="error-msg">Usuario o contraseña incorrectos</div>
+        <?php if ($error): ?>
+            <div id="error-msg" style="display: block;"><?php echo htmlspecialchars($error); ?></div>
+        <?php else: ?>
+            <div id="error-msg">Usuario o contraseña incorrectos</div>
+        <?php endif; ?>
 
         <!-- Formulario -->
-        <form id="loginForm" onsubmit="validarLogin(event)">
+        <form id="loginForm" method="POST" action="">
             
             <div class="input-group">
                 <label for="username">Usuario</label>
-                <input type="text" id="username" class="input-field" placeholder="Ingresa tu usuario" required>
+                <input type="text" id="username" name="username" class="input-field" placeholder="Ingresa tu usuario" required
+                       value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>">
             </div>
 
             <div class="input-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" class="input-field" placeholder="Ingresa tu contraseña" required>
+                <input type="password" id="password" name="password" class="input-field" placeholder="Ingresa tu contraseña" required>
             </div>
 
             <button type="submit" class="btn-login">Entrar</button>
@@ -44,29 +69,6 @@
 
         <a href="generos.html" class="btn-back">← Volver a la Biblioteca</a>
     </div>
-
-    <!-- SCRIPT DE VALIDACIÓN -->
-    <script>
-        function validarLogin(event) {
-            event.preventDefault(); 
-
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const errorDiv = document.getElementById('error-msg');
-
-            // Credenciales de prueba
-            const USER_CORRECTO = "admin";
-            const PASS_CORRECTO = "1234";
-
-            if (user === USER_CORRECTO && pass === PASS_CORRECTO) {
-                // REDIRECCIÓN AL PANEL DE ADMIN
-                // Aquí es donde te manda a la pantalla correcta
-                window.location.href = "admin_login.html";
-            } else {
-                errorDiv.style.display = "block";
-            }
-        }
-    </script>
 
 </body>
 </html>

@@ -160,3 +160,37 @@ INSERT INTO libro_genero (id_libro, id_genero, prioridad) VALUES
 
 -- Neuromante - Ciencia Ficción (1) principal, Misterio (4) secundario
 (23, 1, 1), (23, 4, 2);
+
+
+--COSIGO PARA PODER VER TODOS LOS LIBROS  
+    <div class="container">
+        <div class="welcome-text">
+            <h3>Libros principales</h3>
+        </div>
+    </div>
+    
+    <!-- SECCIÓN DE LIBROS -->
+    <div class="grid">
+        <?php
+        if ($result && $result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $parametros = 
+                "id_libro=" . $row['id_libro'] .
+                "&titulo=" . $row['titulo'] . 
+                "&autor=" . $row['autor'] . 
+                "&descripcion=" . $row['descripcion'] . 
+                "&ruta_imagen=" . $row['ruta_imagen'];
+                
+                echo "<a href='modal.php?$parametros' class='card'>";
+                echo "<div class='card-icon'>";
+                echo "<img src='" . $row['ruta_imagen'] . "' alt='" . $row['titulo'] . "'>";
+                echo "</div>";
+                echo "<h2>" . $row['titulo'] . "</h2>";
+                echo "<p class='autor'>" . $row['autor'] . "</p>";
+                echo "</a>";
+            }
+        } else {
+            echo "<p style='text-align: center; color: #fff;'>No se encontraron libros en la base de datos.</p>";
+        }
+        ?>
+    </div>

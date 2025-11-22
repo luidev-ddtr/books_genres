@@ -1,11 +1,17 @@
+<?php
+// Seleccionar todos los libros para que el administrador pueda buscarlos
+include ('../controlador/conexion.php');
+$sql = "SELECT * FROM libro";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - Biblioteca</title>
+    <link rel="stylesheet" href="style.css/admin_login.css">
 </head>
-<link rel="stylesheet" href="style.css/admin_login.css">
 <body>
 
     <div id="screen-admin">
@@ -27,12 +33,12 @@
             <div class="admin-actions">
                 
                 <!-- Buscador -->
-                <div class="search-bar-container">
-                    <input type="text" class="search-input" placeholder="Buscar libro por título, autor o ID...">
-                    <button class="search-btn">
+                <form class="search-bar-container" method="GET" action="">
+                    <input type="text" name="q" class="search-input" placeholder="Buscar libro por título, autor o ID...">
+                    <button type="submit" class="search-btn">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     </button>
-                </div>
+                </form>
 
                 <!-- Botón Agregar Libro -->
                 <a href="agregar.html" class="btn-add-book">
@@ -48,7 +54,6 @@
             </a>
 
         </div>
-
     </div>
 
 </body>

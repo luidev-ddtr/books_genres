@@ -103,7 +103,7 @@ h1 {
     border-radius: 50px;
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.2s, background-color 0.2s;
+    /* Se eliminó transition y transform */
     display: inline-flex;
     align-items: center;
     border: none;
@@ -113,7 +113,7 @@ h1 {
 
 .boton-agregar-libro:hover {
     background-color: #d35400;
-    transform: scale(1.05);
+    /* Se eliminó transform scale */
 }
 
 .boton-agregar-libro svg {
@@ -125,14 +125,14 @@ h1 {
 
 /* BOTÓN CERRAR SESIÓN */
 .boton-cerrar-sesion {
-    margin-top: 40px;
+    margin-top: 10px;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color 0.3s;
+    /* Se eliminó transition */
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 2px;
 }
 
 .boton-cerrar-sesion:hover {
@@ -167,7 +167,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 0.3s;
+    /* Se eliminó transition */
     height: 100%;
     box-sizing: border-box;
 }
@@ -175,7 +175,7 @@ h1 {
 .tarjeta:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: #e67e22;
-    transform: translateY(-8px);
+    /* Se eliminó transform translateY */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -224,7 +224,7 @@ h1 {
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: 0.3s;
+    /* Se eliminó transition */
     text-align: center;
     flex: 1;
     max-width: 80px;
@@ -274,7 +274,7 @@ h1 {
 
 .boton-cerrar {
     position: absolute;
-    top: 10px;
+    top: 3px;
     right: 15px;
     color: #fff;
     font-size: 24px;

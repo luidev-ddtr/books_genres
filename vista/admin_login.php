@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
 
     <div id="pantalla-admin">
         
-        <img src="images/admin.jpg" alt="Fondo Administración" class="imagen-fondo">
+        <img src="images/registro.jpg" alt="Fondo Administración" class="imagen-fondo">
         <div class="fondo-oscuro"></div>
 
         <div class="contenedor-principal">
@@ -44,20 +44,18 @@ if ($result->num_rows > 0) {
             
             <h1>Administración</h1>
             <p class="subtitulo">Gestiona el catálogo y los recursos de la biblioteca.</p>
-            
             <div class="acciones-admin">
                 <!-- Botón Agregar Libro -->
                 <a href="agregar.html" class="boton-agregar-libro">
                     <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                    Agregar Nuevo Libro
-                </a>
+                    Agregar Nuevo Libro </a>
             </div>
 
             <a href="index.html" class="boton-cerrar-sesion">
                 <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
                 Cerrar Sesión
             </a>
-
+</br>
             <!-- Cuadrícula de libros -->
             <div class="cuadricula">
                 <?php
@@ -81,7 +79,7 @@ if ($result->num_rows > 0) {
                     echo "</div>";
                     echo "<h2>" . $libro['titulo'] . "</h2>";
                     echo "<div class='botones-accion'>";
-                    echo "<a href='editar.php?" . $parametros_editar . "' class='boton-editar'>Editar</a>";
+                    echo "<a href='editar_libro.php?" . $parametros_editar . "' class='boton-editar'>Editar</a>";
                     echo "<a href='../modelo/eliminar_libro.php?id=" . $libro['id_libro'] . "' class='boton-eliminar' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este libro?\");'>Eliminar</a>";
                     echo "</div>";
                     echo "</div>";

@@ -1,184 +1,184 @@
-        /* --- RESET Y BASE --- */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+/* --- RESET Y BASE --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex; /* Activa Flexbox para organizar todo el cuerpo */
+    flex-direction: column; /* Apila header y contenido verticalmente */
+}
 
-        /* --- FONDO --- */
-        .bg-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-        }
+/* --- FONDO --- */
+.bg-image {
+    position: fixed; /* Fija la imagen para que no se mueva con el scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    z-index: -2; /* Al fondo de todo */
+}
 
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Fondo oscuro SIN blur para nitidez */
-            background-color: rgba(0, 0, 0, 0.6); 
-            z-index: -1;
-        }
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo oscuro SIN blur para nitidez */
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: -1; /* Sobre la imagen (-2) pero bajo el contenido */
+}
 
-        /* --- HEADER --- */
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
+/* --- HEADER --- */
+header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* Asegura que quede por encima del resto */
+}
 
-        .header-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
+.header-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
 
-        /* --- BOTONES --- */
-        .btn-glass {
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            padding: 8px 20px;
-            border-radius: 50px;
-            transition: all 0.3s;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 0.9rem;
-        }
+/* --- BOTONES --- */
+.btn-glass {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px); /* Efecto vidrio esmerilado */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.9rem;
+}
 
-        .btn-glass:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
+.btn-glass:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px); /* Ligera elevación al pasar el mouse */
+}
 
-        /* --- CONTENEDOR DEL FORMULARIO --- */
-        .main-container {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+/* --- CONTENEDOR DEL FORMULARIO --- */
+.main-container {
+    flex-grow: 1; /* Ocupa todo el espacio vertical disponible restante */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    padding: 40px 20px;
+}
 
-        .form-container {
-            background: rgba(30, 30, 30, 0.6); 
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 40px 50px;
-            width: 100%;
-            max-width: 650px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+.form-container {
+    background: rgba(30, 30, 30, 0.6); 
+    backdrop-filter: blur(15px); /* Desenfoque fuerte para el fondo del formulario */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 650px; /* Ancho máximo para evitar que se estire demasiado */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
 
-        .form-title {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+.form-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
 
-        /* --- INPUTS Y LABELS --- */
-        .form-group {
-            margin-bottom: 20px;
-        }
+/* --- INPUTS Y LABELS --- */
+.form-group {
+    margin-bottom: 20px;
+}
 
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #ddd;
-        }
+.form-label {
+    display: block; /* Ocupa su propia línea */
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ddd;
+}
 
-        .form-input, 
-        .form-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            box-sizing: border-box;
-        }
+.form-input, 
+.form-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: inherit; /* Hereda la fuente del body */
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    box-sizing: border-box; /* Incluye padding en el ancho total */
+}
 
-        /* ESTILO PARA CAMPOS DE SOLO LECTURA (NO EDITABLES) */
-        .form-input[readonly] {
-            background-color: rgba(0, 0, 0, 0.3); /* Fondo más oscuro */
-            color: #aaa; /* Texto más apagado */
-            border-color: rgba(255, 255, 255, 0.05);
-            cursor: not-allowed; /* Cursor de prohibido */
-        }
+/* ESTILO PARA CAMPOS DE SOLO LECTURA (NO EDITABLES) */
+.form-input[readonly] {
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo más oscuro para indicar estado */
+    color: #aaa;
+    border-color: rgba(255, 255, 255, 0.05);
+    cursor: not-allowed; /* Muestra icono de prohibido */
+}
 
-        /* ESTILO PARA CAMPOS EDITABLES (FOCUS) */
-        .form-input:not([readonly]):focus, 
-        .form-textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #e67e22; /* Naranja al enfocar */
-            box-shadow: 0 0 10px rgba(230, 126, 34, 0.2);
-        }
+/* ESTILO PARA CAMPOS EDITABLES (FOCUS) */
+.form-input:not([readonly]):focus, 
+.form-textarea:focus {
+    outline: none; /* Quita el borde azul por defecto */
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #e67e22; /* Resalta el borde en naranja */
+    box-shadow: 0 0 10px rgba(230, 126, 34, 0.2); /* Resplandor suave */
+}
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+.form-textarea {
+    resize: vertical; /* Permite redimensionar solo la altura */
+    min-height: 120px;
+}
 
-        /* --- BOTÓN GUARDAR CAMBIOS --- */
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            border-radius: 50px;
-            border: none;
-            /* CAMBIO: Color Naranja/Ocre igual que en 'Agregar' */
-            background-color: #d37234; 
-            color: white;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            /* CAMBIO: Propiedades Flex para que la etiqueta 'a' centre el contenido */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            box-sizing: border-box;
-        }
+/* --- BOTÓN GUARDAR CAMBIOS --- */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    border: none;
+    /* olor Naranja/Ocre igual que en 'Agregar' */
+    background-color: #d37234; 
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    /*  Propiedades Flex para que la etiqueta 'a' centre el contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
 
-        .btn-submit:hover {
-            background-color: #e67e22;
-            transform: scale(1.02);
-        }
+.btn-submit:hover {
+    background-color: #e67e22;
+    transform: scale(1.02); /* Crece ligeramente */
+}
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .form-container {
-                padding: 25px;
-            }
-        }
+/* Responsive */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 25px; /* Reduce padding en móviles */
+    }
+}

@@ -1,25 +1,24 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-    min-height: 100vh;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la pantalla */
     background-color: #1a1a1a;
 }
 
-
 .imagen-fondo {
-    position: fixed;
+    position: fixed; /* Fija la imagen respecto a la ventana, no se mueve al scrollear */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    z-index: -2;
+    object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarla */
+    z-index: -2; /* Envía la imagen al fondo, detrás de todo el contenido */
 }
 
 .fondo-oscuro {
@@ -28,19 +27,18 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.3); /* Capa semitransparente para oscurecer el fondo */
+    z-index: -1; /* Se coloca sobre la imagen (-2) pero bajo el texto */
 }
-
 
 header {
     padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
+    display: flex; /* Activa Flexbox para alinear elementos hijos */
+    justify-content: space-between; /* Separa los elementos a los extremos (izq y der) */
+    align-items: center; /* Centra los elementos verticalmente */
+    position: sticky; /* El menú se queda pegado arriba al hacer scroll */
     top: 0;
-    z-index: 100;
+    z-index: 100; /* Asegura que el menú flote sobre otros elementos */
     background-color: transparent;
 }
 
@@ -49,30 +47,29 @@ header {
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 10px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    gap: 10px; /* Espacio entre el texto y el icono (si lo hubiera) */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejorar lectura sobre fondos claros */
 }
 
 .botones-encabezado {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: column; /* Apila los botones verticalmente */
+    align-items: flex-end; /* Alinea los botones a la derecha */
     gap: 10px;
 }
 
-
 .boton-vidrio {
-    text-decoration: none;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
     color: white;
     font-weight: 600;
     display: flex;
     align-items: center;
     padding: 8px 16px;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: 0.3s;
+    border-radius: 50px; /* Bordes completamente redondeados (píldora) */
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo translúcido */
+    backdrop-filter: blur(5px); /* Desenfoca el fondo detrás del botón */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil semitransparente */
+    transition: 0.3s; /* Suaviza el cambio de color al pasar el mouse */
 }
 
 .boton-vidrio:hover {
@@ -84,22 +81,20 @@ header {
     width: 18px;
     height: 18px;
     margin-right: 8px;
-    fill: white;
+    fill: white; /* Pinta el icono SVG de blanco */
 }
 
 .boton-administrador {
     font-size: 0.9rem;
     padding: 6px 14px;
-    opacity: 0.9;
+    opacity: 0.9; /* Ligeramente transparente */
 }
-
 
 .contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Evita que el contenido se estire demasiado en pantallas grandes */
+    margin: 0 auto; /* Centra el bloque horizontalmente */
     padding: 0 20px;
 }
-
 
 .texto-bienvenida {
     text-align: center;
@@ -109,23 +104,23 @@ header {
 .texto-bienvenida h1 {
     font-size: 3.5rem;
     margin: 0;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra fuerte para destacar el título */
     font-weight: 700;
 }
 
 .texto-bienvenida h3 {
     font-size: 1.8rem;
     margin: 40px 0 20px 0;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Línea decorativa debajo del texto */
     padding-bottom: 10px;
-    display: inline-block;
+    display: inline-block; /* Hace que el borde se ajuste al ancho del texto */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .cuadricula {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
+    display: grid; /* Activa el sistema de Grid */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Columnas responsivas automáticas */
+    gap: 30px; /* Espacio entre filas y columnas */
     padding: 0 20px 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -133,31 +128,31 @@ header {
 
 .tarjeta {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 15px;
     color: white;
-    cursor: pointer;
+    cursor: pointer; /* Cambia el cursor a 'manita' para indicar clic */
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 0.3s;
-    height: 100%;
+
+    height: 100%; /* Fuerza a que todas las tarjetas tengan la misma altura */
     box-sizing: border-box;
 }
 
 .tarjeta:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: #e67e22;
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Sombra difusa para dar profundidad */
 }
 
 .icono-tarjeta {
     width: 100%;
-    aspect-ratio: 2/3;
-    overflow: hidden;
+    aspect-ratio: 2/3; /* Mantiene proporción vertical de póster */
+    overflow: hidden; /* Recorta la imagen si sobresale de los bordes redondeados */
     border-radius: 10px;
     margin-bottom: 15px;
 }
@@ -165,7 +160,7 @@ header {
 .icono-tarjeta img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Llena el contenedor sin deformar la imagen */
 }
 
 .tarjeta h2 {
@@ -174,30 +169,29 @@ header {
     text-align: center;
     font-weight: 600;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
+    display: -webkit-box; /* Necesario para recortar texto por líneas */
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    -webkit-line-clamp: 2; /* Corta el texto después de 2 líneas */
+    overflow: hidden; /* Oculta el texto sobrante */
 }
 
 .autor-tarjeta {
     font-size: 0.9rem;
     color: #ddd;
     margin-top: 5px;
-    font-style: italic;
+    font-style: italic; /* Texto en cursiva */
 }
 
 .fondo-modal {
-    display: none;
+    display: none; /* Oculto inicialmente (se activa con JS) */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro casi opaco */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
 }
 
 .contenido-modal {
@@ -205,13 +199,13 @@ header {
     border-radius: 10px;
     width: 90%;
     max-width: 800px;
-    max-height: 90vh;
-    position: relative;
+    max-height: 90vh; /* Altura máxima del 90% de la pantalla */
+    position: relative; /* Referencia para posicionar el botón de cerrar */
     border: 1px solid #444;
 }
 
 .boton-cerrar {
-    position: absolute;
+    position: absolute; /* Posición absoluta respecto al modal */
     top: 10px;
     right: 15px;
     color: #fff;
@@ -222,7 +216,7 @@ header {
     background: rgba(0, 0, 0, 0.5);
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: 50%; /* Botón circular */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,14 +249,14 @@ header {
     width: 60%;
     padding: 20px;
     color: white;
-    overflow-y: auto;
+    overflow-y: auto; /* Scroll vertical si el contenido es muy largo */
 }
 
 .etiqueta-genero {
     color: #e67e22;
     font-weight: bold;
     font-size: 14px;
-    display: block;
+    display: block; /* Ocupa su propia línea */
     margin-bottom: 10px;
 }
 
@@ -277,10 +271,10 @@ header {
     font-style: italic;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #444; /* Línea divisora sutil */
 }
 
 .descripcion-modal {
-    line-height: 1.5;
+    line-height: 1.5; /* Altura de línea para mejorar legibilidad */
     color: #e0e0e0;
 }

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Validar credenciales
     if ($username === $USUARIO_CORRECTO && $password === $PASSWORD) {
-        // Redirigir al panel de administración (Asegúrate de que 'admin_login.php' exista)
+        // Redirigir al panel de administración  'admin_login.php'
         header("Location: admin_login.php");
         exit();
     } else {

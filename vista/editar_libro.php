@@ -15,6 +15,7 @@ $ruta_imagen = isset($_GET['ruta_imagen']) ? $_GET['ruta_imagen'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Libro - Administración</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <link rel="stylesheet" href="style.css/editar_libro.css">

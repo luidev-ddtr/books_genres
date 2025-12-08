@@ -1,20 +1,32 @@
 <?php
-// Seleccionar todos los libros para que el administrador pueda buscarlos
+// Seleccionar todos los libros con su género principal (prioridad 1)
 include ('../controlador/conexion.php');
-$sql = "SELECT DISTINCT
-    libro.*
-FROM
-    libro
-JOIN libro_genero ON libro.id_libro = libro_genero.id_libro
-JOIN genero ON genero.id_genero = libro_genero.id_genero
-ORDER BY
-    genero.id_genero ASC;
-";
+
+$sql = "SELECT 
+            l.*,
+            g.nombre_genero as genero_principal,
+            g.id_genero as id_genero_principal
+        FROM libro l
+        JOIN libro_genero lg ON l.id_libro = lg.id_libro
+        JOIN genero g ON lg.id_genero = g.id_genero
+        WHERE lg.prioridad = 1
+        ORDER BY g.nombre_genero ASC, l.titulo ASC";
+
 $result = $conn->query($sql);
 $libros = [];
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $libros[] = $row;
+    }
+}
+
+// Obtener todos los géneros para el filtro (opcional)
+$sql_generos = "SELECT * FROM genero ORDER BY nombre_genero";
+$result_generos = $conn->query($sql_generos);
+$generos = [];
+if ($result_generos->num_rows > 0) {
+    while($row = $result_generos->fetch_assoc()) {
+        $generos[] = $row;
     }
 }
 ?>
@@ -26,7 +38,32 @@ if ($result->num_rows > 0) {
     <link rel="icon" type="image/png" href="images/favicon.ico"> 
     <title>Panel de Administración - Biblioteca</title>
     <style>
-
+        .filtro-genero {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .filtro-genero select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: white;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        .etiqueta-genero {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <link rel="stylesheet" href="style.css/admin_login.css">
@@ -45,7 +82,7 @@ if ($result->num_rows > 0) {
                     Agregar Género
                 </a>
 
-                <a href="agregar.html" class="boton-agregar-libro">
+                <a href="agregar.php" class="boton-agregar-libro">
                     <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                     Agregar Nuevo Libro 
                 </a>
@@ -60,38 +97,67 @@ if ($result->num_rows > 0) {
             <h1>Administración</h1>
             <p class="subtitulo">Gestiona el catálogo y los recursos de la biblioteca.</p>
             
+            <!-- Filtro por género -->
+            <div class="filtro-genero">
+                <label for="select-genero">Filtrar por género:</label>
+                <select id="select-genero" onchange="filtrarPorGenero()">
+                    <option value="">Todos los géneros</option>
+                    <?php foreach($generos as $genero): ?>
+                        <option value="<?php echo $genero['id_genero']; ?>">
+                            <?php echo htmlspecialchars($genero['nombre_genero']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            
             <a href="../index.html" class="boton-cerrar-sesion">
                 <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
                 Cerrar Sesión
             </a>
-</br>
+            </br>
+
             <div class="cuadricula">
                 <?php
-                $libro['nombre_genero'] = "";
-                for ($i = 0; $i < count($libros); $i++) {
-                    $libro = $libros[$i];
-                    $parametros_editar = "id_libro=" . $libro['id_libro'] . 
-                                            "&titulo=" . $libro['titulo'] . 
-                                            "&autor=" . $libro['autor'] . 
-                                            "&descripcion=" . $libro['descripcion'] . 
-                                            "&ruta_imagen=" . $libro['ruta_imagen'] . 
-                                            "&genero=" . $libro['nombre_genero'] = "";
-                    
-                    echo "<div class='tarjeta' 
-                            data-titulo='" . $libro['titulo'] . "' 
-                            data-autor='" . $libro['autor'] . "' 
-                            data-genero='" . $libro['nombre_genero'] = "" . "' 
-                            data-descripcion='" . $libro['descripcion'] . "' 
-                            data-imagen='" . $libro['ruta_imagen'] . "'>";
-                    echo "<div class='icono-tarjeta'>";
-                    echo "<img src='" . $libro['ruta_imagen'] . "' alt='" . $libro['titulo'] . "'>";
-                    echo "</div>";
-                    echo "<h2>" . $libro['titulo'] . "</h2>";
-                    echo "<div class='botones-accion'>";
-                    echo "<a href='editar_libro.php?" . $parametros_editar . "' class='boton-editar'>Editar</a>";
-                    echo "<a href='../modelo/eliminar_libro.php?id=" . $libro['id_libro'] . "' class='boton-eliminar' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este libro?\");'>Eliminar</a>";
-                    echo "</div>";
-                    echo "</div>";
+                if (count($libros) > 0) {
+                    foreach ($libros as $libro) {
+                        // Solo pasamos el id_libro para editar
+                        $id_libro = $libro['id_libro'];
+                        $genero_principal = isset($libro['genero_principal']) ? $libro['genero_principal'] : '';
+                        $id_genero_principal = isset($libro['id_genero_principal']) ? $libro['id_genero_principal'] : '';
+                        
+                        echo "<div class='tarjeta' 
+                                data-titulo='" . htmlspecialchars($libro['titulo']) . "' 
+                                data-autor='" . htmlspecialchars($libro['autor']) . "' 
+                                data-genero='" . htmlspecialchars($genero_principal) . "'
+                                data-id-genero='" . $id_genero_principal . "'
+                                data-descripcion='" . htmlspecialchars($libro['descripcion']) . "' 
+                                data-imagen='" . htmlspecialchars($libro['ruta_imagen']) . "'>";
+                        
+                        echo "<div class='icono-tarjeta'>";
+                        // Imagen del libro con manejo de error
+                        echo "<img src='" . htmlspecialchars($libro['ruta_imagen']) . "' 
+                                   alt='" . htmlspecialchars($libro['titulo']) . "'
+                                   onerror=\"this.src='images/no_found.png';\">";
+                        echo "</div>";
+                        
+                        echo "<h2>" . htmlspecialchars($libro['titulo']) . "</h2>";
+                        
+                        // Mostrar el género principal
+                        if ($genero_principal) {
+                            echo "<div class='etiqueta-genero'>" . htmlspecialchars($genero_principal) . "</div>";
+                        }
+                        
+                        echo "<div class='botones-accion'>";
+                        // Enlace de editar - solo pasa el id_libro
+                        echo "<a href='editar_libro.php?id_libro=" . $id_libro . "' class='boton-editar'>Editar</a>";
+                        echo "<a href='../modelo/eliminar_libro.php?id=" . $id_libro . "' 
+                               class='boton-eliminar' 
+                               onclick='return confirm(\"¿Estás seguro de que deseas eliminar este libro?\");'>Eliminar</a>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p style='color: white; text-align: center; width: 100%;'>No hay libros en la base de datos.</p>";
                 }
                 ?>
             </div>
@@ -110,6 +176,23 @@ if ($result->num_rows > 0) {
             const imagen = elemento.getAttribute('data-imagen');
             
             abrirModal(titulo, autor, genero, descripcion, imagen);
+        }
+        
+        // Función para filtrar libros por género
+        function filtrarPorGenero() {
+            const select = document.getElementById('select-genero');
+            const generoId = select.value;
+            const tarjetas = document.querySelectorAll('.tarjeta');
+            
+            tarjetas.forEach(tarjeta => {
+                const tarjetaGeneroId = tarjeta.getAttribute('data-id-genero');
+                
+                if (!generoId || generoId === tarjetaGeneroId) {
+                    tarjeta.style.display = 'block';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
         }
         
         // Asignar eventos a todas las tarjetas

@@ -9,7 +9,6 @@ $sql = "SELECT
         FROM libro l
         JOIN libro_genero lg ON l.id_libro = lg.id_libro
         JOIN genero g ON lg.id_genero = g.id_genero
-        WHERE lg.prioridad = 1
         ORDER BY g.nombre_genero ASC, l.titulo ASC";
 
 $result = $conn->query($sql);

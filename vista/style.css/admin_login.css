@@ -95,7 +95,8 @@
         /* ESTILOS DE LOS BOTONES */
         .boton-cerrar-sesion,
         .boton-agregar-libro, 
-        .boton-agregar-genero {
+        .boton-agregar-genero,
+        .boton-ver-generos { /* AÑADIDO AQUI */
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -132,7 +133,8 @@
 
         /* Estilo Específico: Botones de Acción (Colores) */
         .boton-agregar-libro, 
-        .boton-agregar-genero {
+        .boton-agregar-genero,
+        .boton-ver-generos { /* AÑADIDO AQUI */
             color: white;
             padding: 12px 24px;
             font-size: 1rem;
@@ -143,15 +145,18 @@
 
         .boton-agregar-libro { background-color: #e67e22; }
         .boton-agregar-genero { background-color: #2980b9; }
+        .boton-ver-generos { background-color: #8e44ad; } /* Color Morado para Ver Géneros */
 
         .boton-agregar-libro:hover,
-        .boton-agregar-genero:hover {
+        .boton-agregar-genero:hover,
+        .boton-ver-generos:hover {
             transform: translateY(-2px);
             filter: brightness(1.1);
         }
 
         .boton-agregar-libro svg, 
-        .boton-agregar-genero svg {
+        .boton-agregar-genero svg,
+        .boton-ver-generos svg {
             width: 20px;
             height: 20px;
             fill: white;
@@ -292,7 +297,26 @@
         .seccion-info h2 { font-size: 24px; margin: 0 0 10px 0; line-height: 1.2; }
         .autor-modal { color: #ccc; font-style: italic; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #444; }
         .descripcion-modal { line-height: 1.5; color: #e0e0e0; }
-
+        
+        /* Estilos adicionales que tenías en el head */
+        .filtro-genero {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .filtro-genero select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: white;
+            font-size: 16px;
+            margin-left: 10px;
+            color: #333;
+        }
+        
         /* RESPONSIVE */
         @media (max-width: 950px) {
             .acciones-admin {

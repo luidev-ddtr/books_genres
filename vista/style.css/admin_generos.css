@@ -1,0 +1,232 @@
+/* --- RESET Y BASE --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    min-height: 100vh; /* Asegura que el fondo cubra al menos toda la pantalla */
+}
+
+/* --- FONDO DE HOJAS (Estilo Fijo) --- */
+.bg-image {
+    position: fixed; /* Imagen fija, no se mueve con el scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo sin deformarse */
+    z-index: -2; /* Capa más profunda, detrás de todo */
+}
+
+/* --- CAPA OSCURA (Overlay) --- */
+.bg-overlay {
+    position: fixed; /* Capa fija sobre la imagen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Un poco más oscuro para admin */
+    z-index: -1; /* Se sitúa entre la imagen (-2) y el contenido */
+}
+
+/* --- HEADER SUPERIOR --- */
+header {
+    background-color: transparent;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- CONTENEDOR DE BOTONES --- */
+.header-buttons {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    gap: 8px;
+}
+
+/* --- ESTILO COMÚN DE BOTONES (Vidrio) --- */
+.btn-glass {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+}
+
+.btn-glass svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    fill: white;
+}
+
+.btn-add {
+    background-color: rgba(46, 204, 113, 0.2); /* Tono verdoso para agregar */
+}
+.btn-add:hover {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.container {
+    max-width: 1200px; 
+    margin: 20px auto 60px; 
+    padding: 0 20px;
+    position: relative;
+}
+
+.page-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.page-intro p {
+    color: #f1f1f1;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* --- GRID (REJILLA) --- */
+.grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; 
+}
+
+/* --- TARJETA (Modificada para admin) --- */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease;
+    height: 100%; /* Para que todas midan lo mismo */
+    box-sizing: border-box;
+    cursor: default; /* Ya no es un enlace toda la tarjeta */
+}
+
+.card:hover {
+    background-color: rgba(255, 255, 255, 0.15); 
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; 
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-icon svg {
+    width: 35px;
+    height: 35px;
+    fill: white;
+}
+
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.card p {
+    margin: 0 0 20px 0; /* Espacio extra abajo para separar de los botones */
+    font-size: 0.95rem;
+    color: #eee;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    flex-grow: 1; /* Empuja los botones hacia abajo */
+}
+
+/* --- NUEVOS ESTILOS PARA LOS BOTONES DE ACCIÓN --- */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: auto; /* Asegura que se queden al fondo */
+}
+
+.btn-action {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: white;
+    transition: background 0.3s ease;
+    flex: 1; /* Ambos botones ocupan el mismo ancho */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+/* Color botón Editar */
+.btn-edit {
+    background-color: rgba(52, 152, 219, 0.6); /* Azul */
+    border: 1px solid rgba(52, 152, 219, 0.8);
+}
+.btn-edit:hover {
+    background-color: rgba(52, 152, 219, 1);
+}
+
+/* Color botón Eliminar */
+.btn-delete {
+    background-color: rgba(231, 76, 60, 0.6); /* Rojo */
+    border: 1px solid rgba(231, 76, 60, 0.8);
+}
+.btn-delete:hover {
+    background-color: rgba(231, 76, 60, 1);
+}
+
+/* Mensaje sin géneros */
+.no-generos {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+}
